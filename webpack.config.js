@@ -1,4 +1,6 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports ={
     entry: './src/index.js',
     output: {
@@ -15,12 +17,22 @@ module.exports ={
             exclude: /node_modules/,
             use: {
                 loader: 'babel-loader',
+            },
+            test:/\.html$/,
+            use: {
+                loader: 'html-loader',
             }
         }
     },
+    pugins:[
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+            filename: './index.html'
+        })
+    ],
     devServer:{
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 3600
+        port: 3600,
     }
 }
