@@ -9,10 +9,10 @@ module.exports ={
 
     },
     resolve: {
-        extencios: ['.js', '.jsx']
+        extensions: ['.js', '.jsx']
     },
     module:{
-        rules:{
+        rules:[{
             test: /\.(js | jsx)$/,
             exclude: /node_modules/,
             use: {
@@ -22,16 +22,18 @@ module.exports ={
             use: {
                 loader: 'html-loader',
             }
-        }
+        }]
     },
-    pugins:[
+    plugins:[
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: './index.html'
         })
     ],
     devServer:{
-        contentBase: path.join(__dirname, 'dist'),
+        static:{
+            directory: path.join(__dirname, 'dist'),
+        },
         compress: true,
         port: 3600,
     }
